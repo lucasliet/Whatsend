@@ -27699,7 +27699,7 @@ F.UD.prototype={
 $0:function(){var s=0,r=P.ak(t.m),q,p=this
 var $async$$0=P.ae(function(a,b){if(a===1)return P.ah(b,r)
 while(true)switch(s){case 0:s=3
-return P.ax(T.W2("https://api.whatsapp.com/send?phone="+H.a(p.a.e.a.a)),$async$$0)
+return P.ax(T.W2("https://api.whatsapp.com/send?phone=+55"+H.a(p.a.e.a.a)),$async$$0)
 case 3:q=b
 s=1
 break
