@@ -70,7 +70,7 @@ class _WhatsendState extends State<Whatsend> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 50),
                         child: RaisedButton(
-                            onPressed: () async => await launch('https://api.whatsapp.com/send?phone=${_phoneController.text}'),
+                            onPressed: () async => await launch('https://api.whatsapp.com/send?phone=+55${_phoneController.text}'),
                             child: Text('Enviar'),
                             color: Color(0xFF34B7F1),
                             shape: RoundedRectangleBorder(
