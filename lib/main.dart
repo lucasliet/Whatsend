@@ -19,7 +19,6 @@ class _WhatsendState extends State<Whatsend> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(),
       home: Scaffold(
         backgroundColor: Color(0xFF128C7E),
         body: Column(
@@ -31,55 +30,62 @@ class _WhatsendState extends State<Whatsend> {
             Expanded(
               flex: 2,
               child: SingleChildScrollView(
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      Text(
-                        "Digite o número para quem deseja enviar a mensagem",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFEEEEEE),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(20),
-                        child: TextFormField(
-                          keyboardType: TextInputType.phone,
-                          controller: _phoneController,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        Text(
+                          "Digite o número para quem deseja enviar a mensagem",
                           textAlign: TextAlign.center,
-                          validator: (value) {
-                            return value.isEmpty ? 'Digite alguma coisa' : null;
-                          },
                           style: TextStyle(
-                              color: Colors.black
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFFEEEEEE),
                           ),
-                          decoration: InputDecoration(
-                            hintText: '11999999999',
-                            hintStyle: TextStyle(color: Colors.blueGrey),
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(24),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          child: TextFormField(
+                            keyboardType: TextInputType.phone,
+                            controller: _phoneController,
+                            textAlign: TextAlign.center,
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return "Digite alguma coisa";
+                              } else {
+                                return null;
+                              }
+                            },
+                            style: TextStyle(color: Colors.black),
+                            decoration: InputDecoration(
+                              hintText: '11999999999',
+                              hintStyle: TextStyle(color: Colors.blueGrey),
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(24),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 50),
-                        child: RaisedButton(
-                            onPressed: () async => await launch('https://api.whatsapp.com/send?phone=+55${_phoneController.text}'),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 50),
+                          child: RaisedButton(
+                            onPressed: () async => await launch(
+                              'https://api.whatsapp.com/send?phone=+55${_phoneController.text}',
+                            ),
                             child: Text('Enviar'),
                             color: Color(0xFF34B7F1),
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(32)
+                              borderRadius: BorderRadius.circular(32),
                             ),
                             elevation: 4,
-                        ),
-                      )
-                    ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
